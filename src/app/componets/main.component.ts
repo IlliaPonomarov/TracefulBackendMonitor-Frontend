@@ -1,7 +1,7 @@
-import { Component, OnInit } from "@angular/core";
-import { Communications } from "../utility/communications.enum";
+import {Component, OnInit} from "@angular/core";
+import {Communications} from "../utility/communications.enum";
 import RestLog from "../models/webservice.model";
-import { WebService } from "../services/rest.webservice.service";
+import {WebService} from "../services/rest.webservice.service";
 
 @Component({
     selector: 'app-main',
@@ -12,19 +12,27 @@ import { WebService } from "../services/rest.webservice.service";
 export class MainComponent implements OnInit {
 
   protected communications: Communications[] = [Communications.KAFKA, Communications.GRAPHQL, Communications.REST, Communications.SOAP]
-  protected selectedCommunication: Communications = Communications.REST;
+  protected selectedCommunication: Communications | undefined;
   rests: RestLog[] | undefined;
 
   constructor(private webService: WebService) { }
 
   ngOnInit(): void {
-    this.webService.getWebServices().subscribe({next: (data: RestLog[]) => this.rests = data});
+    if (this.selectedCommunication === Communications.REST)
+        this.getAllRestLogs();
   }
 
-    selectCommunication(communication: Communications): void {
+  selectCommunication(communication: any): void {
         console.log("Selected communication: " + communication);
 
+        if (communication === Communications.REST)
+            this.getAllRestLogs();
+
         this.selectedCommunication = communication;
+  }
+
+    private getAllRestLogs(): void {
+        this.webService.getWebServices().subscribe({next: (data: RestLog[]) => this.rests = data});
     }
 
 }

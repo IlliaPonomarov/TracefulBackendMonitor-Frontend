@@ -1,7 +1,6 @@
-<div class="container">
+<div class="container-fluid bg-light">
     <div class="row">
-
-        <div class="dropdown p-3 border bg-light2 col-2 col-sm-2">
+        <div class="dropdown p-3 border bg-light2 col-md col-lg">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                 {{ selectedCommunication }}
             </button>
@@ -16,14 +15,15 @@
 
         </div>
 
-        <div class="dropdown p-3 border bg-light2 col-6 col-sm-2">
+
+        <div class="dropdown p-3 border bg-light2 col-md">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                {{ selectedCommunication }}
+                {{ selectedService }}
             </button>
             <div >
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
-                    <li *ngFor="let comm of communications; index as i">
-                        <a class="dropdown-item" (click)="selectCommunication(comm)" href="#">{{ comm }}</a>
+                    <li *ngFor="let service of services; index as i">
+                        <a class="dropdown-item" (click)="selectService(service)" href="#">{{ service }}</a>
                     </li>
 
                 </ul>
