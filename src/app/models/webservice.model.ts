@@ -6,13 +6,15 @@ export default class RestLog {
 
     private _id: string;
     private _service: string;
+    private _operation: string;
     private _request: Request;
     private _response: Response;
     private _date: Date;
 
-    constructor(id: string, service: string, request: Request, response: Response, date: Date) {
+    constructor(id: string, service: string, operation: string,  request: Request, response: Response, date: Date) {
         this._id = id;
         this._service = service;
+        this._operation = operation;
         this._request = request;
         this._response = response;
         this._date = date;
@@ -32,6 +34,14 @@ export default class RestLog {
 
   set service(value: string) {
     this._service = value;
+  }
+
+  get operation(): string {
+    return this._operation;
+  }
+
+  set operation(value: string) {
+    this._operation = value;
   }
 
   get request(): Request {

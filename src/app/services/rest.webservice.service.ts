@@ -18,7 +18,7 @@ export class WebService {
                 let request: Request = new Request(rest.request.url, rest.request.method, rest.request.parameters, rest.request.headers, rest.request.body);
                 let response: Response = new Response(rest.response.status, rest.response.headers, rest.response.body, rest.response.error, rest.response.date);
 
-                return new RestLog(rest.id, rest.service, request, response, rest.date);
+                return new RestLog(rest.id, rest.service, rest.operation, request, response, rest.date);
               }
             )
           }))

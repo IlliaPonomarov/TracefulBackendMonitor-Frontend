@@ -3,10 +3,11 @@
     {
       "id" : 1,
       "service": "Busniess in Austria",
+      "operation": "findAll",
       "request": {
         "url": "http://localhost:8080/api/v1/business",
         "method": "GET",
-        "parameters": "id=1",
+        "parameters": "",
         "headers": "Content-Type: application/json",
         "body": ""
       } ,
@@ -23,6 +24,7 @@
     {
       "id" : 2,
       "service": "Busniess in Austria",
+      "operation": "findById",
       "request": {
         "url": "http://localhost:8080/api/v1/business",
         "parameters": "id=1",
