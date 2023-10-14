@@ -1,0 +1,10 @@
+<div class="col-12 col-lg-2" *ngFor="let log of rests">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">{{ log.id }}</h5>
+            <p class="card-text">{{ log.service }}</p>
+            <p class="card-text">{{ log.request.url }} {{ log.request.method }} {{ log.request.body }} {{ log.request.headers }} {{ log.request.parameters }}</p>
+            <p class="card-text">{{ log.response.statusCode }} {{ log.response.body }} {{ log.response.headers }}</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+    </div>

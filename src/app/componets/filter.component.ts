@@ -11,8 +11,20 @@ import RestLog from "../models/webservice.model";
 export class FilterComponent {
   protected communications: Communications[] = [Communications.KAFKA, Communications.GRAPHQL, Communications.REST, Communications.SOAP]
   protected selectedCommunication: Communications = Communications.REST;
+  protected services: string[] = [];
+  protected operations: string[] = [];
 
-  @Input() protected rests: RestLog[] | undefined;
+  @Input() rests: RestLog[] | undefined;
+
+  constructor() { }
+
+
+    selectCommunication(communication: Communications): void {
+        console.log("Selected communication: " + communication);
+
+        this.selectedCommunication = communication;
+    }
+
 
 
 }
