@@ -1,0 +1,61 @@
+<div class="container">
+    <div class="p-4 border bg-light">
+    </div>
+
+    <div class="row g-2">
+        <div class="col-12 col-lg-2"><app-header/></div>
+        <div class="col-lg-9 bg-light p-3 border" >
+            <div class="container">
+                <div class="row">
+
+                <div class="dropdown p-3 border bg-light2 col-2 col-sm-2">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        {{ selectedCommunication }}
+                    </button>
+                    <div >
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+                            <li *ngFor="let comm of communications; index as i">
+                                <a class="dropdown-item" (click)="selectCommunication(comm)" href="#">{{ comm }}</a>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                </div>
+
+                <div class="dropdown p-3 border bg-light2 col-6 col-sm-2">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        {{ selectedCommunication }}
+                    </button>
+                    <div >
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+                            <li *ngFor="let comm of communications; index as i">
+                                <a class="dropdown-item" (click)="selectCommunication(comm)" href="#">{{ comm }}</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+  <div class="container">
+     <div class="row">
+       <div class="col-12 col-lg-2" *ngFor="let log of rests">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{{ log.id }}</h5>
+              <p class="card-text">{{ log.service }}</p>
+              <p class="card-text">{{ log.request.url }} {{ log.request.method }} {{ log.request.body }} {{ log.request.headers }} {{ log.request.parameters }}</p>
+              <p class="card-text">{{ log.response.statusCode }} {{ log.response.body }} {{ log.response.headers }}</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+       </div>
+     </div>
+  </div>
+
+
+</div>
