@@ -1,5 +1,6 @@
 import {Component, Input} from "@angular/core";
-import RestLog from "../models/webservice.model";
+import RestLog from "../models/rest.model";
+import {KafkaLog} from "../models/kafka.model";
 
 @Component({
     selector: 'app-logs',
@@ -8,7 +9,7 @@ import RestLog from "../models/webservice.model";
 })
 export class LogsComponent{
 
-    @Input() rests: RestLog[] | undefined;
+    @Input() restLogs: RestLog[] | undefined;
 
     constructor() { }
 

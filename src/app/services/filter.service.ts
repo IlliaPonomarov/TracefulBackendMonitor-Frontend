@@ -1,4 +1,4 @@
-import RestLog from "../models/webservice.model";
+import RestLog from "../models/rest.model";
 
 
 export class FilterService {

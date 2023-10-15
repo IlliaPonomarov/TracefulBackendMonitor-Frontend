@@ -10,13 +10,13 @@
 
     <div class="row">
         <div class="col" >
-           <app-filter (selectedCommunicationEvent)="selectCommunication($event)" [rests]="rests"></app-filter>
+           <app-filter (selectedCommunicationEvent)="selectCommunication($event)" [communicationLogs]="restLogs"></app-filter>
         </div>
     </div>
 
     <div class="row">
         <div class="col">
-            <app-logs [rests]="rests"></app-logs>
+            <app-logs [restLogs]="restLogs"></app-logs>
         </div>
      </div>
 </div>

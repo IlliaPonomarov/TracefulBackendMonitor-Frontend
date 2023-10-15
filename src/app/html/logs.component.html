@@ -1,7 +1,7 @@
 
 
-<div *ngIf="rests; else notFound">
-    <div class="col-12 col-lg-2" *ngFor="let log of rests">
+<div *ngIf="restLogs; else notFound">
+    <div class="col-12 col-lg-2" *ngFor="let log of restLogs">
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">{{ log.id }}</h5>

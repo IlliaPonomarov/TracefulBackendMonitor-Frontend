@@ -1,8 +1,9 @@
 import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
 import {Communications} from "../utility/communications.enum";
-import RestLog from "../models/webservice.model";
+import RestLog from "../models/rest.model";
 import {FilterService} from "../services/filter.service";
 import {RestService} from "../services/webservice.service";
+import {KafkaLog} from "../models/kafka.model";
 
 
 @Component({
@@ -22,13 +23,13 @@ export class FilterComponent implements OnInit {
   protected operations: string[] = [];
   protected selectedOperation: string = "";
 
-  @Input() rests: RestLog[] | undefined;
+  @Input() communicationLogs: RestLog[] | KafkaLog [] | undefined;
 
   constructor(private filterService: FilterService) { }
 
   ngOnInit() {
     this.selectedCommunication = Communications.NONE;
-    console.log("rests: " + this.rests)
+    console.log("rests: " + this.communicationLogs)
   }
 
   selectCommunication(communication: Communications): void {
@@ -36,9 +37,9 @@ export class FilterComponent implements OnInit {
         this.selectedCommunication = communication;
         this.selectedCommunicationEvent.emit(communication);
 
-    console.log("99 rests: " + this.rests)
+    console.log("99 rests: " + this.communicationLogs)
         if (communication === Communications.REST) {
-          this.services = this.filterService.getServices(this.rests);
+          this.services = this.filterService.getServices(this.communicationLogs as RestLog[]);
           console.log("services: " + this.services);
         }
   }

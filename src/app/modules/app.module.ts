@@ -8,6 +8,7 @@ import { MainComponent } from '../componets/main.component';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {FilterComponent} from "../componets/filter.component";
 import {LogsComponent} from "../componets/logs.component";
+import {CommunicationFactory, KafkaService, RestService} from "../services/webservice.service";
 
 @NgModule({
   declarations: [
@@ -18,7 +19,7 @@ import {LogsComponent} from "../componets/logs.component";
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [RestService, KafkaService, CommunicationFactory],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
