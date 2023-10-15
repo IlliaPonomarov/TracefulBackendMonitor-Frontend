@@ -5,6 +5,7 @@ export enum Communications {
     SOAP = "SOAP",
     GRAPHQL = "GraphQL",
     KAFKA = "Kafka",
+    NONE = "Communication"
 }
 
 

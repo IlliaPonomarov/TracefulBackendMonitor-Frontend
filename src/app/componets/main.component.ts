@@ -1,13 +1,13 @@
 import {Component, OnInit} from "@angular/core";
 import {Communications} from "../utility/communications.enum";
 import RestLog from "../models/webservice.model";
-import {WebService} from "../services/rest.webservice.service";
+import {RestService} from "../services/webservice.service";
 
 @Component({
     selector: 'app-main',
     templateUrl: '../html/main.component.html',
     styleUrls: ['../css/main.component.css'],
-    providers: [WebService]
+    providers: [RestService]
 })
 export class MainComponent implements OnInit {
 
@@ -15,7 +15,7 @@ export class MainComponent implements OnInit {
   protected selectedCommunication: Communications | undefined;
   rests: RestLog[] | undefined;
 
-  constructor(private webService: WebService) { }
+  constructor(private webService: RestService) { }
 
   ngOnInit(): void {
     if (this.selectedCommunication === Communications.REST)
@@ -29,6 +29,12 @@ export class MainComponent implements OnInit {
             this.getAllRestLogs();
 
         this.selectedCommunication = communication;
+  }
+
+  resetCommunication(): void {
+      if (this.selectedCommunication !== Communications.REST && this.rests?.length !== 0 || this.selectedCommunication === undefined)
+          this.rests = [];
+
   }
 
     private getAllRestLogs(): void {

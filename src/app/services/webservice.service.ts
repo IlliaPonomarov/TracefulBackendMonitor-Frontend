@@ -4,8 +4,9 @@ import { Observable, map } from "rxjs";
 import RestLog, {Request, Response} from "../models/webservice.model";
 
 @Injectable()
-export class WebService {
+export class RestService {
 
+    private rests: RestLog[] = [];
     constructor(private http: HttpClient) { }
 
       public getWebServices(): Observable<RestLog[]> {

@@ -41,6 +41,37 @@
 
       }
     }
+  ],
+  "kafka" : [
+    {
+        "id" : "1",
+        "service": "Camunda",
+        "topic": "camunda.business.topic",
+        "operation": "findAll",
+        "consumer": {
+          "messageId": "0809",
+          "data": "{ \"id\": 1, \"name\": \"Business in Austria\", \"description\": \"Business in Austria\" }"
+        },
+        "producer": {
+          "messageId": "0809",
+          "data": "{ \"id\": 1, \"name\": \"Business in Austria\", \"description\": \"Business in Austria\" }"
+        }
+    },
+
+    {
+        "id" : "2",
+        "service": "ESET",
+        "topic": "eset.users.topic",
+        "operation": "findAllUsers",
+        "consumer": {
+          "messageId": "0809",
+          "data": "{ \"id\": 1, \"username\": \"admin\", \"password\": \"admin\" }"
+        },
+        "producer": {
+          "messageId": "0809",
+          "data": "{ \"id\": 1, \"username\": \"admin\", \"password\": \"admin\" }"
+        }
+    }
   ]
 }
 

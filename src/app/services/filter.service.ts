@@ -18,4 +18,20 @@ export class FilterService {
 
         return operations;
   }
+
+    getServices(rests: RestLog[] | undefined) {
+        let services: string[] = [];
+
+        console.log("rests: " + rests)
+
+        if (rests !== undefined) {
+            rests.forEach(rest => {
+                services.push(rest.service);
+            });
+        }
+
+        console.log("services: " + services)
+
+        return services;
+    }
 }

@@ -1,7 +1,6 @@
 import {Component, Input} from "@angular/core";
 import RestLog from "../models/webservice.model";
 
-
 @Component({
     selector: 'app-logs',
     templateUrl: '../html/logs.component.html',

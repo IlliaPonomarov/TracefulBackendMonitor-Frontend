@@ -1,10 +1,9 @@
 import {Communications, RestMethods} from "../utility/communications.enum";
 
 
-
 export default class RestLog {
 
-    private _id: string;
+    private readonly _id: string;
     private _service: string;
     private _operation: string;
     private _request: Request;
