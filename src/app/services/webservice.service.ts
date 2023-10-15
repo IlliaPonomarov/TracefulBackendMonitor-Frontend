@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {HttpClient, HttpHandler} from '@angular/common/http';
 import {map, Observable} from "rxjs";
 import RestLog, {Request, Response} from "../models/rest.model";
-import {KafkaLog} from "../models/kafka.model";
+import {Consumer, KafkaLog, Producer} from "../models/kafka.model";
 import {Communications} from "../utility/communications.enum";
 
 
@@ -41,10 +41,15 @@ export  class KafkaService implements CommunicationService<KafkaLog>{
   findAll(): Observable<KafkaLog[]> {
     return this.http.get('assets/webservice.json')
       .pipe(map((response: any) => {
-        let kafkaLogs = response['kafka'];
+        let logs = response['logs'];
+        let kafkaLogs = logs['kafka'];
+
 
         return kafkaLogs.map(function (kafkaLog: any): KafkaLog {
-            return new KafkaLog(kafkaLog.id, kafkaLog.service, kafkaLog.operation, kafkaLog.request, kafkaLog.response, kafkaLog.date);
+          let producers: Producer[] = kafkaLog.producers;
+          let consumers: Consumer[] = kafkaLog.consumers;;
+
+            return new KafkaLog(kafkaLog.id, kafkaLog.service, kafkaLog.operation, kafkaLog.topic, producers, consumers);
           }
         );
       }

@@ -10,6 +10,7 @@ import {KafkaLog} from "../models/kafka.model";
 export class LogsComponent{
 
     @Input() restLogs: RestLog[] | undefined;
+    @Input() kafkaLogs: KafkaLog[] | undefined;
 
     constructor() { }
 

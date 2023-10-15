@@ -4,7 +4,7 @@ export class KafkaLog {
   private _service: string;
   private _operation: string;
   private _topic: string;
-  private _producer: Producer[];
+  private _producers: Producer[];
   private _consumers: Consumer[];
 
   constructor(id: string, service: string, operation: string, topic: string, producer: Producer[], consumers: Consumer[]) {
@@ -12,10 +12,14 @@ export class KafkaLog {
     this._service = service;
     this._operation = operation;
     this._topic = topic;
-    this._producer = producer;
+    this._producers = producer;
     this._consumers = consumers;
   }
 
+
+  get id(): string {
+    return this._id;
+  }
 
   get service(): string {
     return this._service;
@@ -41,12 +45,12 @@ export class KafkaLog {
     this._topic = value;
   }
 
-  get producer(): Producer[] {
-    return this._producer;
+  get producers(): Producer[] {
+    return this._producers;
   }
 
-  set producer(value: Producer[]) {
-    this._producer = value;
+  set producers(value: Producer[]) {
+    this._producers = value;
   }
 
   get consumers(): Consumer[] {

@@ -46,13 +46,13 @@
         "service": "Camunda",
         "topic": "camunda.business.topic",
         "operation": "findAll",
-        "consumer": [
+        "consumers": [
           {
             "messageId": "0809",
             "data": "{ \"id\": 1, \"name\": \"Business in Austria\", \"description\": \"Business in Austria\" }"
           }
         ],
-        "producer": [
+        "producers": [
           {
             "messageId": "0809",
             "data": "{ \"id\": 1, \"name\": \"Business in Austria\", \"description\": \"Business in Austria\" }"
@@ -64,14 +64,14 @@
         "service": "ESET",
         "topic": "eset.users.topic",
         "operation": "findAllUsers",
-        "consumer": {
+        "consumers": [{
           "messageId": "0809",
           "data": "{ \"id\": 1, \"username\": \"admin\", \"password\": \"admin\" }"
-        },
-        "producer": {
+        }],
+        "producers": [{
           "messageId": "0809",
           "data": "{ \"id\": 1, \"username\": \"admin\", \"password\": \"admin\" }"
-        }
+        }]
       }
     ]
   }

@@ -1,6 +1,6 @@
 
 
-<div *ngIf="restLogs; else notFound">
+<div *ngIf="restLogs; else kafka" >
     <div class="col-12 col-lg-2" *ngFor="let log of restLogs">
         <div class="card">
             <div class="card-body">
@@ -13,6 +13,32 @@
         </div>
     </div>
 </div>
+<ng-template  #kafka>
+  <div *ngIf="kafkaLogs; else notFound" >
+    <div class="col-12 col-lg-2" *ngFor="let log of kafkaLogs">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ log.id }}</h5>
+          <p class="card-text">{{ log.service }}</p>
+          <p class="card-text">{{ log.operation }}</p>
+          <p class="card-text">{{ log.topic }}</p>
+
+          <p class="card-text">Consumer {{log.consumers}}</p>
+          <div *ngFor="let consumer of log.consumers">
+            <p class="card-text">{{ consumer.messageId }}</p>
+            <p class="card-text">{{ consumer.data }}</p>
+            </div>
+          <p class="card-text">Producer</p>
+          <div *ngFor="let producer of log.producers">
+            <p class="card-text">{{ producer.messageId }}</p>
+            <p class="card-text">{{ producer.data }}</p>
+          </div>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
 <ng-template #notFound>
     <div class="alert alert-danger" role="alert">
         <h4 class="alert-heading">No logs found</h4>
