@@ -1,4 +1,4 @@
-import {Communications, RestMethods} from "../utility/communications.enum";
+import {CommunicationsEnum, RestMethods} from "../utility/communications.enum";
 
 
 export default class RestLog {

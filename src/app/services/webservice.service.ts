@@ -3,7 +3,7 @@ import {HttpClient, HttpHandler} from '@angular/common/http';
 import {map, Observable} from "rxjs";
 import RestLog, {Request, Response} from "../models/rest.model";
 import {Consumer, KafkaLog, Producer} from "../models/kafka.model";
-import {Communications} from "../utility/communications.enum";
+import {CommunicationsEnum} from "../utility/communications.enum";
 
 
 export interface CommunicationService<T> {
@@ -64,11 +64,11 @@ export class CommunicationFactory {
 
   constructor(protected _restService: RestService, protected _kafkaService: KafkaService) {
   }
-  public  getRestCommunicationService(communication: Communications): CommunicationService<RestLog> {
+  public  getRestCommunicationService(communication: CommunicationsEnum): CommunicationService<RestLog> {
     return this._restService;
   }
 
-  public getKafkaCommunicationService(communication: Communications): CommunicationService<KafkaLog> {
+  public getKafkaCommunicationService(communication: CommunicationsEnum): CommunicationService<KafkaLog> {
     return this._kafkaService;
   }
 

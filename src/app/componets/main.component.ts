@@ -1,5 +1,5 @@
 import {Component} from "@angular/core";
-import {Communications} from "../utility/communications.enum";
+import {CommunicationsEnum} from "../utility/communications.enum";
 import RestLog from "../models/rest.model";
 import {CommunicationFactory, CommunicationService, RestService} from "../services/webservice.service";
 import {KafkaLog} from "../models/kafka.model";
@@ -13,32 +13,33 @@ import {DataService} from "../services/data.service";
 })
 export class MainComponent {
 
-  protected selectedCommunication: Communications | undefined;
+  protected selectedCommunication: CommunicationsEnum | undefined;
   protected communicationService: CommunicationService<RestLog | KafkaLog> | undefined;
 
   restLogs: RestLog[] | undefined;
   kafkaLogs: KafkaLog[] | undefined;
+  data: (RestLog | KafkaLog)[] | undefined;
 
   constructor(private communicationFactoryService: CommunicationFactory, protected dataService: DataService) { }
 
   selectCommunication(communication: any): void {
         console.log("Selected communication: " + communication);
 
-        if (communication === Communications.REST) {
+        if (communication === CommunicationsEnum.REST) {
           this.communicationService = this.communicationFactoryService.getRestCommunicationService(communication);
-          this.getRestAllLogs();
+          this.getAllLogs();
         }
 
-        if (communication === Communications.KAFKA) {
+        if (communication === CommunicationsEnum.KAFKA) {
           this.restLogs = undefined;
           this.communicationService = this.communicationFactoryService.getKafkaCommunicationService(communication);
-          this.getRestAllLogs();
+          this.getAllLogs();
         }
 
         this.selectedCommunication = communication;
   }
 
-    private getRestAllLogs(): void {
+    private getAllLogs(): void {
       if (this.communicationService === undefined) {
         console.log("Communication service is undefined ( REST )");
         return;
@@ -46,22 +47,20 @@ export class MainComponent {
 
       this.communicationService.findAll().subscribe({
         next: (logs: (RestLog | KafkaLog)[]) => {
-          if (this.selectedCommunication === Communications.REST) {
-            this.restLogs = logs.filter(log => log instanceof RestLog) as RestLog[];
-            this.dataService.setData(this.restLogs);
 
-          }
-          if (this.selectedCommunication === Communications.KAFKA) {
-            this.kafkaLogs = logs.filter(log => log instanceof KafkaLog) as KafkaLog[];
-            this.dataService.setData(this.kafkaLogs);
-          }
+          this.dataService.setData(logs);
+          this.data = this.dataService.getData();
+          this.dataService.setCommunicationLogs(this.selectedCommunication as CommunicationsEnum);
+
+
         },
         error: (err: any) => console.log(err),
         complete: () => console.log("Communication service completed ( REST )")
       });
+    }
 
-
-
+    private setCommunicationLogs(selectedCommunication: CommunicationsEnum): void {
+     this.selectedCommunication = selectedCommunication;
     }
 
 }

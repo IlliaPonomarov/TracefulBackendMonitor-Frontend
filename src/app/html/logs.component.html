@@ -1,49 +1,50 @@
 
 
-<div *ngIf="restLogs; else kafka" >
-    <div class="col-12 col-lg-2" *ngFor="let log of restLogs">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">{{ log.id }}</h5>
-                <p class="card-text">{{ log.service }}</p>
-                <p class="card-text">{{ log.request.url }} {{ log.request.method }} {{ log.request.body }} {{ log.request.headers }} {{ log.request.parameters }}</p>
-                <p class="card-text">{{ log.response.statusCode }} {{ log.response.body }} {{ log.response.headers }}</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>
-    </div>
-</div>
-<ng-template  #kafka>
-  <div *ngIf="kafkaLogs; else notFound" >
-    <div class="col-12 col-lg-2" *ngFor="let log of kafkaLogs">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">{{ log.id }}</h5>
-          <p class="card-text">{{ log.service }}</p>
-          <p class="card-text">{{ log.operation }}</p>
-          <p class="card-text">{{ log.topic }}</p>
+<div *ngIf="communicationLogs" >
 
-          <p class="card-text">Consumer {{log.consumers}}</p>
-          <div *ngFor="let consumer of log.consumers">
-            <p class="card-text">{{ consumer.messageId }}</p>
-            <p class="card-text">{{ consumer.data }}</p>
-            </div>
-          <p class="card-text">Producer</p>
-          <div *ngFor="let producer of log.producers">
-            <p class="card-text">{{ producer.messageId }}</p>
-            <p class="card-text">{{ producer.data }}</p>
+      <div class="col-12 col-lg-2" *ngFor="let log of communicationLogs">
+        <div *ngIf="selectedCommunication === CommunicationsEnum.REST; else kafka">
+          <div class="card">
+              <div class="card-body">
+                  <h5 class="card-title">{{ log.id }}</h5>
+                  <p class="card-text">{{ log.service }}</p>
+                  <p class="card-text">{{ log.request.url }} {{ log.request.method }} {{ log.request.body }} {{ log.request.headers }} {{ log.request.parameters }}</p>
+                  <p class="card-text">{{ log.response.statusCode }} {{ log.response.body }} {{ log.response.headers }}</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
           </div>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
       </div>
-    </div>
-  </div>
-</ng-template>
-<ng-template #notFound>
+      <ng-template #kafka>
+        <div *ngIf="selectedCommunication === CommunicationsEnum.KAFKA; else notFound">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{{ log.id }}</h5>
+              <p class="card-text">{{ log.service }}</p>
+              <p class="card-text">{{ log.operation }}</p>
+              <p class="card-text">{{ log.topic }}</p>
+
+              <p class="card-text">Consumer {{log.consumers}}</p>
+              <div *ngFor="let consumer of log.consumers">
+                <p class="card-text">{{ consumer.messageId }}</p>
+                <p class="card-text">{{ consumer.data }}</p>
+              </div>
+              <p class="card-text">Producer</p>
+              <div *ngFor="let producer of log.producers">
+                <p class="card-text">{{ producer.messageId }}</p>
+                <p class="card-text">{{ producer.data }}</p>
+              </div>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+      </div>
+  <ng-template #notFound>
     <div class="alert alert-danger" role="alert">
-        <h4 class="alert-heading">No logs found</h4>
-        <p>There are no logs to display.</p>
-        <hr>
-        <p class="mb-0">Please try again later.</p>
+      <h4 class="alert-heading">No logs found</h4>
+      <p>There are no logs to display.</p>
+      <hr>
+      <p class="mb-0">Please try again later.</p>
     </div>
-</ng-template>
+  </ng-template>
+</div>

@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
-import {Communications} from "../utility/communications.enum";
+import {CommunicationsEnum} from "../utility/communications.enum";
 import RestLog from "../models/rest.model";
 import {FilterService} from "../services/filter.service";
 import {RestService} from "../services/webservice.service";
@@ -13,9 +13,9 @@ import {KafkaLog} from "../models/kafka.model";
   providers: [FilterService, RestService]
 })
 export class FilterComponent implements OnInit {
-  protected communications: Communications[] = [Communications.KAFKA, Communications.GRAPHQL, Communications.REST, Communications.SOAP]
-  @Output() selectedCommunicationEvent = new EventEmitter<Communications>();
-  protected selectedCommunication: Communications | undefined;
+  protected communications: CommunicationsEnum[] = [CommunicationsEnum.KAFKA, CommunicationsEnum.GRAPHQL, CommunicationsEnum.REST, CommunicationsEnum.SOAP]
+  @Output() selectedCommunicationEvent = new EventEmitter<CommunicationsEnum>();
+  protected selectedCommunication: CommunicationsEnum | undefined;
 
   protected services: string[] = [];
   protected selectedService: string = "Services";
@@ -23,22 +23,22 @@ export class FilterComponent implements OnInit {
   protected operations: string[] = [];
   protected selectedOperation: string = "";
 
-  @Input() communicationLogs: RestLog[] | KafkaLog [] | undefined;
+  @Input() communicationLogs: ( RestLog | KafkaLog )[] | undefined;
 
   constructor(private filterService: FilterService) { }
 
   ngOnInit() {
-    this.selectedCommunication = Communications.NONE;
+    this.selectedCommunication = CommunicationsEnum.NONE;
     console.log("rests: " + this.communicationLogs)
   }
 
-  selectCommunication(communication: Communications): void {
+  selectCommunication(communication: CommunicationsEnum): void {
         console.log("Selected communication: " + communication);
         this.selectedCommunication = communication;
         this.selectedCommunicationEvent.emit(communication);
 
     console.log("99 rests: " + this.communicationLogs)
-        if (communication === Communications.REST) {
+        if (communication === CommunicationsEnum.REST) {
           this.services = this.filterService.getServices(this.communicationLogs as RestLog[]);
           console.log("services: " + this.services);
         }

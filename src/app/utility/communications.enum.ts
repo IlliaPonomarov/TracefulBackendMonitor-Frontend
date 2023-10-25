@@ -1,6 +1,6 @@
 
 
-export enum Communications {
+export enum CommunicationsEnum {
     REST = "REST",
     SOAP = "SOAP",
     GRAPHQL = "GraphQL",
