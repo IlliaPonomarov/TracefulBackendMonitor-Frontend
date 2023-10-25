@@ -16,8 +16,6 @@ export class MainComponent {
   protected selectedCommunication: CommunicationsEnum | undefined;
   protected communicationService: CommunicationService<RestLog | KafkaLog> | undefined;
 
-  restLogs: RestLog[] | undefined;
-  kafkaLogs: KafkaLog[] | undefined;
   data: (RestLog | KafkaLog)[] | undefined;
   services: string[] = [];
 
@@ -32,7 +30,6 @@ export class MainComponent {
         }
 
         if (communication === CommunicationsEnum.KAFKA) {
-          this.restLogs = undefined;
           this.communicationService = this.communicationFactoryService.getKafkaCommunicationService(communication);
           this.getAllLogs();
         }
@@ -54,15 +51,9 @@ export class MainComponent {
           this.services = this.dataService.getServices();
           this.dataService.setCommunicationLogs(this.selectedCommunication as CommunicationsEnum);
 
-
         },
         error: (err: any) => console.log(err),
         complete: () => console.log("Communication service completed ( REST )")
       });
     }
-
-    private setCommunicationLogs(selectedCommunication: CommunicationsEnum): void {
-     this.selectedCommunication = selectedCommunication;
-    }
-
 }

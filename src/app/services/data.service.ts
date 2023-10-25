@@ -10,17 +10,19 @@ export class DataService {
   private selectedCommunication: CommunicationsEnum | undefined;
   private services: string[] = [];
 
-
-  // refactor :)
   public setData(data: (RestLog | KafkaLog)[]): void {
+    this.data = data;
 
-      this.data = data
-      if (data.some(item => item instanceof RestLog))
-        this.selectedCommunication = CommunicationsEnum.REST;
-      else if (data.some(item => item instanceof KafkaLog))
-        this.selectedCommunication = CommunicationsEnum.KAFKA;
+    const hasRestLogs = data.some(item => item instanceof RestLog);
+    const hasKafkaLogs = data.some(item => item instanceof KafkaLog);
 
-       this.setServices();
+   if (hasRestLogs) {
+      this.selectedCommunication = CommunicationsEnum.REST;
+    } else if (hasKafkaLogs) {
+      this.selectedCommunication = CommunicationsEnum.KAFKA;
+    }
+
+    this.setServices();
   }
 
   public setCommunicationLogs(communication: CommunicationsEnum): void {
