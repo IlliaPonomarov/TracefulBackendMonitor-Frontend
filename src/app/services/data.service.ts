@@ -20,18 +20,27 @@ export class DataService {
       else if (data.some(item => item instanceof KafkaLog))
         this.selectedCommunication = CommunicationsEnum.KAFKA;
 
-
+       this.setServices();
   }
 
   public setCommunicationLogs(communication: CommunicationsEnum): void {
     this.selectedCommunication = communication;
   }
 
+  private setServices(): void {
+
+    if (this.data.length > 0)
+      this.services = this.data.map(item => item.service).filter((value, index, self) => self.indexOf(value) === index);
+  }
 
 
   public getData(): (RestLog | KafkaLog)[] {
     return this.data
   }
+
+    public getServices(): string[] {
+      return this.services
+    }
 
 
 

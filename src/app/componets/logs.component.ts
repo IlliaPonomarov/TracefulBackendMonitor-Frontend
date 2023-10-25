@@ -10,8 +10,6 @@ import {CommunicationsEnum} from "../utility/communications.enum";
 })
 export class LogsComponent{
 
-    @Input() restLogs: RestLog[] | undefined;
-    @Input() kafkaLogs: KafkaLog[] | undefined;
     @Input() communicationLogs: any[] | undefined;
     @Input() selectedCommunication: CommunicationsEnum | undefined;
     protected readonly CommunicationsEnum = CommunicationsEnum;

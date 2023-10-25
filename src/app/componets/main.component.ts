@@ -19,6 +19,7 @@ export class MainComponent {
   restLogs: RestLog[] | undefined;
   kafkaLogs: KafkaLog[] | undefined;
   data: (RestLog | KafkaLog)[] | undefined;
+  services: string[] = [];
 
   constructor(private communicationFactoryService: CommunicationFactory, protected dataService: DataService) { }
 
@@ -50,6 +51,7 @@ export class MainComponent {
 
           this.dataService.setData(logs);
           this.data = this.dataService.getData();
+          this.services = this.dataService.getServices();
           this.dataService.setCommunicationLogs(this.selectedCommunication as CommunicationsEnum);
 
 
