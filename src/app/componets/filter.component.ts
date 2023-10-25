@@ -24,6 +24,7 @@ export class FilterComponent implements OnInit {
   @Input() services: string[] = [];
 
   @Output() selectedCommunicationEvent = new EventEmitter<CommunicationsEnum>();
+  @Output() selectedServiceEvent = new EventEmitter<string>();
 
 
     constructor(private filterService: FilterService,  protected dataService: DataService) { }
@@ -41,6 +42,7 @@ export class FilterComponent implements OnInit {
 
   selectService(service: string): void {
       this.selectedService = service;
+      this.selectedServiceEvent.emit(service);
   }
 
 

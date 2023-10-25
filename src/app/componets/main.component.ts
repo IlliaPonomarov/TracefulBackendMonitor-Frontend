@@ -37,7 +37,7 @@ export class MainComponent {
         this.selectedCommunication = communication;
   }
 
-    private getAllLogs(): void {
+  private getAllLogs(): void {
       if (this.communicationService === undefined) {
         console.log("Communication service is undefined ( REST )");
         return;
@@ -55,5 +55,14 @@ export class MainComponent {
         error: (err: any) => console.log(err),
         complete: () => console.log("Communication service completed ( REST )")
       });
+    }
+
+  public filterDataByService(service: string): void {
+      if (this.dataService.getData().length === 0) {
+        alert("No data to filter")
+        return;
+      }
+
+      this.data =  this.dataService.filterDataByService(service);
     }
 }

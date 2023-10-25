@@ -40,9 +40,14 @@ export class DataService {
     return this.data
   }
 
-    public getServices(): string[] {
+  public getServices(): string[] {
       return this.services
-    }
+  }
+
+
+  public filterDataByService(service: string): (RestLog | KafkaLog)[] {
+    return this.data.filter(item => item.service === service);
+  }
 
 
 
