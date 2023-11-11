@@ -1,46 +1,71 @@
+<div *ngIf="communicationLogs">
 
+  <table class="table table-striped" *ngIf="selectedCommunication === CommunicationsEnum.REST; else kafka">
+    <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Service</th>
+      <th scope="col">Request</th>
+      <th scope="col">Response</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let log of communicationLogs">
+      <th scope="row">{{ log.id }}</th>
+      <td>{{ log.service }}</td>
+      <td>
+        {{ log.request.url }}
+      </td>
+      <td>
+        {{ log.response.statusCode }}
+      </td>
+    </tr>
+    </tbody>
+  </table>
 
-<div *ngIf="communicationLogs" >
+  <ng-template #kafka>
+    <div *ngIf="selectedCommunication === CommunicationsEnum.KAFKA; else notFound">
 
-      <div class="col-12 col-lg-2" *ngFor="let log of communicationLogs">
-        <div *ngIf="selectedCommunication === CommunicationsEnum.REST; else kafka">
-          <div class="card">
-              <div class="card-body">
-                  <h5 class="card-title">{{ log.id }}</h5>
-                  <p class="card-text">{{ log.service }}</p>
-                  <p class="card-text">{{ log.request.url }} {{ log.request.method }} {{ log.request.body }} {{ log.request.headers }} {{ log.request.parameters }}</p>
-                  <p class="card-text">{{ log.response.statusCode }} {{ log.response.body }} {{ log.response.headers }}</p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
-              </div>
-          </div>
-      </div>
-      <ng-template #kafka>
-        <div *ngIf="selectedCommunication === CommunicationsEnum.KAFKA; else notFound">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">{{ log.id }}</h5>
-              <p class="card-text">{{ log.service }}</p>
-              <p class="card-text">{{ log.operation }}</p>
-              <p class="card-text">{{ log.topic }}</p>
-
-              <p class="card-text">Consumer {{log.consumers}}</p>
+        <table class="table table-striped" *ngIf="selectedCommunication === CommunicationsEnum.KAFKA; else notFound">
+          <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Service</th>
+            <th scope="col">Operation</th>
+            <th scope="col">Topic</th>
+            <th scope="col">Consumers</th>
+            <th scope="col">Producers</th>
+            <th scope="col">Actions</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let log of communicationLogs">
+            <th scope="row">{{ log.id }}</th>
+            <td>{{ log.service }}</td>
+            <td>{{ log.operation }}</td>
+            <td>{{ log.topic }}</td>
+            <td>
               <div *ngFor="let consumer of log.consumers">
-                <p class="card-text">{{ consumer.messageId }}</p>
-                <p class="card-text">{{ consumer.data }}</p>
+                {{ consumer.messageId }}
               </div>
-              <p class="card-text">Producer</p>
+            </td>
+            <td>
               <div *ngFor="let producer of log.producers">
-                <p class="card-text">{{ producer.messageId }}</p>
-                <p class="card-text">{{ producer.data }}</p>
+                {{ producer.messageId }}
+
               </div>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-        </div>
-      </ng-template>
+            </td>
+            <td>
+              <a href="#" class="btn btn-primary">click</a>
+            </td>
+          </tr>
+          </tbody>
+        </table>
       </div>
+  </ng-template>
 
 </div>
+
 <ng-template #notFound>
   <div class="alert alert-danger" role="alert">
     <h4 class="alert-heading">No logs found</h4>
