@@ -5,6 +5,7 @@
         "id": 1,
         "service": "Busniess in Austria",
         "operation": "findAll",
+        "date": "2019-12-03T10:15:30+01:00",
         "request": {
           "url": "http://localhost:8080/api/v1/business",
           "method": "GET",
@@ -24,6 +25,7 @@
         "id": 2,
         "service": "Busniess in Austria",
         "operation": "findById",
+        "date": "2020-12-03T10:15:30+01:00",
         "request": {
           "url": "http://localhost:8080/api/v1/business",
           "parameters": "id=1",
@@ -38,7 +40,46 @@
           "error": "Bad Request",
           "date": "2019-12-03T10:15:30+01:00"
         }
-      }
+      },
+        {
+            "id": 3,
+            "service": "Busniess in Austria",
+            "operation": "create",
+            "date": "2020-12-03T10:15:30+01:00",
+            "request": {
+              "url": "http://localhost:8080/api/v1/business",
+              "parameters": "id=1",
+              "method": "POST",
+              "headers": "Content-Type: application/json",
+              "body": "{ \"id\": 1, \"name\": \"Business in Austria\", \"description\": \"Business in Austria\" }"
+            },
+            "response": {
+            "status": 200,
+            "headers": "Content-Type: application/json",
+            "body": "",
+            "error": "Bad Request",
+            "date": "2019-12-03T10:15:30+01:00"
+            }
+        },
+        {
+            "id": 4,
+            "service": "Busniess in Austria",
+            "operation": "update",
+            "date": "2020-12-03T10:15:30+01:00",
+            "request": {
+            "url": "http://localhost:8080/api/v1/business",
+            "method": "PUT",
+            "headers": "Content-Type: application/json",
+            "body": "{ \"id\": 1, \"name\": \"Business in Austria\", \"description\": \"Business in Austria\" }"
+            },
+            "response": {
+            "status": 200,
+            "headers": "Content-Type: application/json",
+            "body": "",
+            "error": "Bad Request",
+            "date": "2019-12-03T10:15:30+01:00"
+            }
+        }
     ],
     "kafka": [
       {
@@ -46,6 +87,7 @@
         "service": "Camunda",
         "topic": "camunda.business.topic",
         "operation": "findAll",
+        "date": "2021-12-03T10:15:30+01:00",
         "consumers": [
           {
             "messageId": "0809",
@@ -64,6 +106,7 @@
         "service": "ESET",
         "topic": "eset.users.topic",
         "operation": "findAllUsers",
+        "date": "2020-12-03T10:15:30+01:00",
         "consumers": [{
           "messageId": "0809",
           "data": "{ \"id\": 1, \"username\": \"admin\", \"password\": \"admin\" }"
@@ -72,7 +115,99 @@
           "messageId": "0809",
           "data": "{ \"id\": 1, \"username\": \"admin\", \"password\": \"admin\" }"
         }]
-      }
+      },
+        {
+            "id": "3",
+            "service": "ESET",
+            "topic": "eset.users.topic",
+            "operation": "createUser",
+            "date": "2020-12-03T10:15:30+01:00",
+            "consumers": [{
+            "messageId": "0809",
+            "data": "{ \"id\": 1, \"username\": \"admin\", \"password\": \"admin\" }"
+            }],
+            "producers": [{
+            "messageId": "0809",
+            "data": "{ \"id\": 1, \"username\": \"admin\", \"password\": \"admin\" }"
+            }]
+        },
+        {
+            "id": "4",
+            "service": "ESET",
+            "topic": "eset.users.topic",
+            "operation": "updateUser",
+            "date": "2020-12-03T10:15:30+01:00",
+            "consumers": [{
+            "messageId": "0809",
+            "data": "{ \"id\": 1, \"username\": \"admin\", \"password\": \"admin\" }"
+            }],
+            "producers": [{
+            "messageId": "0809",
+            "data": "{ \"id\": 1, \"username\": \"admin\", \"password\": \"admin\" }"
+            }]
+        },
+        {
+            "id": "5",
+            "service": "ESET",
+            "topic": "eset.users.topic",
+            "operation": "deleteUser",
+            "date": "2020-12-03T10:15:30+01:00",
+            "consumers": [{
+            "messageId": "0809",
+            "data": "{ \"id\": 1, \"username\": \"admin\", \"password\": \"admin\" }"
+            }],
+            "producers": [{
+            "messageId": "0809",
+            "data": "{ \"id\": 1, \"username\": \"admin\", \"password\": \"admin\" }"
+            }]
+        },
+        {
+            "id": "6",
+            "service": "ESET",
+            "topic": "eset.users.topic",
+            "operation": "findUserById",
+            "date": "2020-12-03T10:15:30+01:00",
+            "consumers": [{
+            "messageId": "0809",
+            "data": "{ \"id\": 1, \"username\": \"admin\", \"password\": \"admin\" }"
+            }],
+            "producers": [{
+            "messageId": "0809",
+            "data": "{ \"id\": 1, \"username\": \"admin\", \"password\": \"admin\" }"
+            }]
+        },
+        {
+            "id": "7",
+            "service": "ESET",
+            "topic": "eset.users.topic",
+            "operation": "findUserByUsername",
+            "date": "2020-12-03T10:15:30+01:00",
+            "consumers": [{
+            "messageId": "0809",
+            "data": "{ \"id\": 1, \"username\": \"admin\", \"password\": \"admin\" }"
+            }],
+            "producers": [{
+            "messageId": "0809",
+            "data": "{ \"id\": 1, \"username\": \"admin\", \"password\": \"admin\" }"
+            }]
+        },
+        {
+            "id": "8",
+            "service": "ESET",
+            "topic": "eset.users.topic",
+            "operation": "findUserByUsernameAndPassword",
+            "date": "2020-12-03T10:15:30+01:00",
+            "consumers": [{
+            "messageId": "0809",
+            "data": "{ \"id\": 1, \"username\": \"admin\", \"password\": \"admin\" }"
+            }],
+            "producers": [{
+            "messageId": "0809",
+            "data": "{ \"id\": 1, \"username\": \"admin\", \"password\": \"admin\" }"
+            }]
+        }
+
+
     ]
   }
 }

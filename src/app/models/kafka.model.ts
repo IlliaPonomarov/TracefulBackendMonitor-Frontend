@@ -6,20 +6,30 @@ export class KafkaLog {
   private _topic: string;
   private _producers: Producer[];
   private _consumers: Consumer[];
+  private _date: Date;
 
-  constructor(id: string, service: string, operation: string, topic: string, producer: Producer[], consumers: Consumer[]) {
+  constructor(id: string, service: string, operation: string, topic: string, producer: Producer[], consumers: Consumer[], date: Date) {
     this._id = id;
     this._service = service;
     this._operation = operation;
     this._topic = topic;
     this._producers = producer;
     this._consumers = consumers;
+    this._date = date;
   }
 
 
   get id(): string {
     return this._id;
   }
+
+    get date(): Date {
+      return this._date;
+    }
+
+    set date(value: Date) {
+        this._date = value;
+    }
 
   get service(): string {
     return this._service;

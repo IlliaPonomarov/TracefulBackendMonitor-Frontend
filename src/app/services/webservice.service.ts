@@ -49,7 +49,7 @@ export  class KafkaService implements CommunicationService<KafkaLog>{
           let producers: Producer[] = kafkaLog.producers;
           let consumers: Consumer[] = kafkaLog.consumers;;
 
-            return new KafkaLog(kafkaLog.id, kafkaLog.service, kafkaLog.operation, kafkaLog.topic, producers, consumers);
+            return new KafkaLog(kafkaLog.id, kafkaLog.service, kafkaLog.operation, kafkaLog.topic, producers, consumers, kafkaLog.date);
           }
         );
       }

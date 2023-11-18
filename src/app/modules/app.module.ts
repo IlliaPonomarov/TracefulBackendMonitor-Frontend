@@ -10,6 +10,7 @@ import {FilterComponent} from "../componets/filter.component";
 import {LogsComponent} from "../componets/logs.component";
 import {CommunicationFactory, KafkaService, RestService} from "../services/webservice.service";
 import {NgbDatepickerModule} from "@ng-bootstrap/ng-bootstrap";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import {NgbDatepickerModule} from "@ng-bootstrap/ng-bootstrap";
         BrowserModule,
         AppRoutingModule,
         HttpClientModule,
-        NgbDatepickerModule
+        NgbDatepickerModule,
+        FormsModule
     ],
   providers: [RestService, KafkaService, CommunicationFactory],
   bootstrap: [AppComponent]

@@ -4,6 +4,7 @@ import RestLog from "../models/rest.model";
 import {CommunicationFactory, CommunicationService, RestService} from "../services/webservice.service";
 import {KafkaLog} from "../models/kafka.model";
 import {DataService} from "../services/data.service";
+import {NgbDate} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
     selector: 'app-main',
@@ -65,4 +66,51 @@ export class MainComponent {
 
       this.data =  this.dataService.filterDataByService(service);
     }
+
+    public filterDataByOperation(operation: string): void {
+        if (this.dataService.getData().length === 0) {
+            alert("No data to filter")
+            return;
+        }
+
+        this.data =  this.dataService.filterDataByOperation(operation);
+    }
+
+    public filterDataByBetweenStartAndEndDate(event: NgbDate[]): void {
+        if (this.dataService.getData().length === 0) {
+            alert("No data to filter")
+            return;
+        }
+
+        if (event[0] === undefined && event[1] === undefined) {
+            alert("Please select a start and end date")
+            return;
+        }
+
+        this.data =  this.dataService.filterDataByBetweenStartAndEndDate(event[0], event[1]);
+    }
+
+  filterDataByStartDate(fromDate: NgbDate) {
+    if (this.dataService.getData().length === 0) {
+      alert("No data to filter")
+      return;
+    }
+
+    console.log("fromDate: " + fromDate)
+
+    this.data =  this.dataService.filterDataByStartDate(fromDate);
+
+  }
+
+  filterDataByEndDate(toDate: NgbDate) {
+    if (this.dataService.getData().length === 0) {
+      alert("No data to filter")
+      return;
+    }
+
+    console.log("toDate: " + toDate)
+
+    this.data =  this.dataService.filterDataByEndDate(toDate);
+
+  }
 }

@@ -12,8 +12,15 @@
         <div class="col" >
            <app-filter (selectedCommunicationEvent)="selectCommunication($event)"
                        (selectedServiceEvent)="filterDataByService($event)"
+                       (selectedBetweenStartAndEndDateEvent)="filterDataByBetweenStartAndEndDate($event)"
+                       (selectedStartDateEvent)="filterDataByStartDate($event)"
+                        (selectedEndDateEvent)="filterDataByEndDate($event)"
+                       (selectedOperationEvent)="filterDataByOperation($event)"
                        [communicationLogs]="data"
-                       [services]="services"></app-filter>
+                       [services]="services"
+           >
+
+           </app-filter>
         </div>
     </div>
 
